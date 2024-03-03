@@ -1,7 +1,7 @@
-import React from "react";
+import "../styles/TodoList.css";
 
 const TodoList = ({ children }) => {
-  return <ul>{children}</ul>;
+  return <u className="todo-list">{children}</u>;
 };
 
 export { TodoList };

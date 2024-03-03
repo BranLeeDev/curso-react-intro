@@ -1,4 +1,3 @@
-import "./App.css";
 import { TodoCounter } from "./components/TodoCounter";
 import { TodoSearch } from "./components/TodoSearch";
 import { TodoList } from "./components/TodoList";
@@ -31,7 +30,15 @@ const defaultTodos = [
 function App() {
   return (
     <>
-      <TodoCounter />
+      <TodoCounter
+        completed={defaultTodos.reduce((prevVal, currVal) => {
+          if (currVal.completed) {
+            return ++prevVal;
+          }
+          return prevVal;
+        }, 0)}
+        total={defaultTodos.length}
+      />
 
       <TodoSearch />
 
