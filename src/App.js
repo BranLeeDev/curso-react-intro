@@ -41,7 +41,7 @@ function App() {
   const total = todosList.length;
 
   const filterTodosList = todosList.filter((todo) =>
-    todo.text.includes(searchValue)
+    todo.text.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   return (
