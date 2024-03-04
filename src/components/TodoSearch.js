@@ -1,9 +1,7 @@
 import React from "react";
 import "../styles/TodoSearch.css";
 
-const TodoSearch = () => {
-  const [searchValue, setSearchValue] = React.useState("");
-
+const TodoSearch = ({ searchValue, setSearchValue }) => {
   return (
     <input
       className="todo-search"
