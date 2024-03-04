@@ -1,9 +1,10 @@
+import React from "react";
+
 import { TodoCounter } from "./components/TodoCounter";
 import { TodoSearch } from "./components/TodoSearch";
 import { TodoList } from "./components/TodoList";
 import { TodoItem } from "./components/TodoItem";
 import { CreateTodoButton } from "./components/CreateTodoButton";
-import React from "react";
 
 const defaultTodos = [
   {
@@ -51,21 +52,9 @@ function App() {
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {searchValue.length > 0
-          ? filterTodosList.map((todo) => (
-              <TodoItem
-                key={todo.id}
-                text={todo.text}
-                completed={todo.completed}
-              />
-            ))
-          : todosList.map((todo) => (
-              <TodoItem
-                key={todo.id}
-                text={todo.text}
-                completed={todo.completed}
-              />
-            ))}
+        {filterTodosList.map((todo) => (
+          <TodoItem key={todo.id} text={todo.text} completed={todo.completed} />
+        ))}
       </TodoList>
 
       <CreateTodoButton />
