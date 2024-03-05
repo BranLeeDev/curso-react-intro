@@ -23,7 +23,7 @@ function TodoItem({ id, text, completed, todosList, setTodosList }) {
         className={`icon icon-check ${completed && "icon-check--active"}`}
         onClick={checkTodo}
       >
-        V
+        <i class="bx bx-check"></i>
       </button>
       <p
         className={`todo-item__paragraph ${
@@ -33,7 +33,7 @@ function TodoItem({ id, text, completed, todosList, setTodosList }) {
         {text}
       </p>
       <button className="icon icon-delete" onClick={removeTodo}>
-        X
+        <i class="bx bx-x"></i>
       </button>
     </li>
   );

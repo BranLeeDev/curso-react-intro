@@ -33,6 +33,10 @@
   font-weight: 700;
 }
 
+.icon > i {
+  font-size: 2rem;
+}
+
 .icon-check {
   position: absolute;
   left: 12px;
