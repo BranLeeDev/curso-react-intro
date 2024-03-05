@@ -31,7 +31,10 @@ const defaultTodos = [
 ];
 
 function App() {
-  const { todosList, saveTodos } = useLocalStorage("TODOS_V1", defaultTodos);
+  const { todosList, saveTodos, loading, error } = useLocalStorage(
+    "TODOS_V1",
+    defaultTodos
+  );
 
   const [searchValue, setSearchValue] = React.useState("");
 
@@ -54,16 +57,24 @@ function App() {
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {filterTodosList.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            id={todo.id}
-            text={todo.text}
-            completed={todo.completed}
-            todosList={todosList}
-            saveTodos={saveTodos}
-          />
-        ))}
+        {loading ? (
+          <p>Loading page...</p>
+        ) : error ? (
+          <p>Error page :(</p>
+        ) : filterTodosList.length === 0 ? (
+          <p>You can create your first TODO</p>
+        ) : (
+          filterTodosList.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              id={todo.id}
+              text={todo.text}
+              completed={todo.completed}
+              todosList={todosList}
+              saveTodos={saveTodos}
+            />
+          ))
+        )}
       </TodoList>
 
       <CreateTodoButton />
