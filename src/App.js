@@ -5,6 +5,7 @@ import { TodoSearch } from "./components/TodoSearch";
 import { TodoList } from "./components/TodoList";
 import { TodoItem } from "./components/TodoItem";
 import { CreateTodoButton } from "./components/CreateTodoButton";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 const defaultTodos = [
   {
@@ -29,16 +30,8 @@ const defaultTodos = [
   },
 ];
 
-export const TODOS_V1 = "TODOS_V1";
-
 function App() {
-  const [todosList, setTodosList] = React.useState(() => {
-    const todosFromStorage = window.localStorage.getItem(TODOS_V1);
-
-    if (todosFromStorage) return JSON.parse(todosFromStorage);
-
-    return defaultTodos;
-  });
+  const { todosList, saveTodos } = useLocalStorage("TODOS_V1", defaultTodos);
 
   const [searchValue, setSearchValue] = React.useState("");
 
@@ -68,7 +61,7 @@ function App() {
             text={todo.text}
             completed={todo.completed}
             todosList={todosList}
-            setTodosList={setTodosList}
+            saveTodos={saveTodos}
           />
         ))}
       </TodoList>

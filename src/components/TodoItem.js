@@ -1,11 +1,9 @@
-import { TODOS_V1 } from "../App";
 import "../styles/TodoItem.css";
 
-function TodoItem({ id, text, completed, todosList, setTodosList }) {
+function TodoItem({ id, text, completed, todosList, saveTodos }) {
   const removeTodo = () => {
     const newTodosList = todosList.filter((todo) => todo.id !== id);
-    setTodosList(newTodosList);
-    window.localStorage.setItem(TODOS_V1, JSON.stringify(newTodosList));
+    saveTodos(newTodosList);
   };
 
   const checkTodo = () => {
@@ -16,8 +14,7 @@ function TodoItem({ id, text, completed, todosList, setTodosList }) {
 
       return todo;
     });
-    setTodosList(newTodosList);
-    window.localStorage.setItem(TODOS_V1, JSON.stringify(newTodosList));
+    saveTodos(newTodosList);
   };
 
   return (
