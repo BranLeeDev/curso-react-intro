@@ -1,9 +1,11 @@
+import { TODOS_V1 } from "../App";
 import "../styles/TodoItem.css";
 
 function TodoItem({ id, text, completed, todosList, setTodosList }) {
   const removeTodo = () => {
     const newTodosList = todosList.filter((todo) => todo.id !== id);
     setTodosList(newTodosList);
+    window.localStorage.setItem(TODOS_V1, JSON.stringify(newTodosList));
   };
 
   const checkTodo = () => {
@@ -15,6 +17,7 @@ function TodoItem({ id, text, completed, todosList, setTodosList }) {
       return todo;
     });
     setTodosList(newTodosList);
+    window.localStorage.setItem(TODOS_V1, JSON.stringify(newTodosList));
   };
 
   return (
@@ -23,7 +26,7 @@ function TodoItem({ id, text, completed, todosList, setTodosList }) {
         className={`icon icon-check ${completed && "icon-check--active"}`}
         onClick={checkTodo}
       >
-        <i class="bx bx-check"></i>
+        <i className="bx bx-check"></i>
       </button>
       <p
         className={`todo-item__paragraph ${
@@ -33,7 +36,7 @@ function TodoItem({ id, text, completed, todosList, setTodosList }) {
         {text}
       </p>
       <button className="icon icon-delete" onClick={removeTodo}>
-        <i class="bx bx-x"></i>
+        <i className="bx bx-x"></i>
       </button>
     </li>
   );

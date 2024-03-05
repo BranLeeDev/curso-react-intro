@@ -29,8 +29,17 @@ const defaultTodos = [
   },
 ];
 
+export const TODOS_V1 = "TODOS_V1";
+
 function App() {
-  const [todosList, setTodosList] = React.useState(defaultTodos);
+  const [todosList, setTodosList] = React.useState(() => {
+    const todosFromStorage = window.localStorage.getItem(TODOS_V1);
+
+    if (todosFromStorage) return JSON.parse(todosFromStorage);
+
+    return defaultTodos;
+  });
+
   const [searchValue, setSearchValue] = React.useState("");
 
   const completed = todosList.reduce((prevValue, currValue) => {
