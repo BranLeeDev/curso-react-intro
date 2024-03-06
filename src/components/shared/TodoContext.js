@@ -26,6 +26,19 @@ const TodoProvider = ({ children }) => {
     todo.text.toLowerCase().includes(searchValue.toLowerCase())
   );
 
+  const addTodo = (text) => {
+    const newTodos = [...todosList];
+    const lastTodoId = todosList.at(-1).id;
+    const newTodo = {
+      id: lastTodoId + 1,
+      text,
+      completed: false,
+    };
+    newTodos.push(newTodo);
+
+    saveTodos(newTodos);
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -40,6 +53,7 @@ const TodoProvider = ({ children }) => {
         error,
         isOpenModal,
         setIsOpenModal,
+        addTodo,
       }}
     >
       {children}

@@ -10,6 +10,7 @@ import { TodosError } from "./components/TodosError";
 import { EmptyTodos } from "./components/EmptyTodos";
 import { TodoContext, TodoProvider } from "./components/shared/TodoContext";
 import { Modal } from "./components/shared/Modal";
+import { TodoForm } from "./components/TodoForm";
 
 function App() {
   return (
@@ -47,7 +48,11 @@ function App() {
 
       <TodoContext.Consumer>
         {({ isOpenModal }) =>
-          isOpenModal ? <Modal>Create your new task</Modal> : null
+          isOpenModal ? (
+            <Modal>
+              <TodoForm />
+            </Modal>
+          ) : null
         }
       </TodoContext.Consumer>
     </TodoProvider>
