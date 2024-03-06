@@ -12,6 +12,8 @@ const TodoProvider = ({ children }) => {
 
   const [searchValue, setSearchValue] = React.useState("");
 
+  const [isOpenModal, setIsOpenModal] = React.useState(false);
+
   const completed = todosList.reduce((prevValue, currValue) => {
     if (currValue.completed) return ++prevValue;
 
@@ -36,6 +38,8 @@ const TodoProvider = ({ children }) => {
         setSearchValue,
         loading,
         error,
+        isOpenModal,
+        setIsOpenModal,
       }}
     >
       {children}
