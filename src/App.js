@@ -6,8 +6,11 @@ import { TodoList } from "./components/TodoList";
 import { TodoItem } from "./components/TodoItem";
 import { CreateTodoButton } from "./components/CreateTodoButton";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { TodosLoading } from "./components/TodosLoading";
+import { TodosError } from "./components/TodosError";
+import { EmptyTodos } from "./components/EmptyTodos";
 
-const defaultTodos = [
+export const defaultTodos = [
   {
     id: 1,
     text: "Aprender Express.js",
@@ -58,11 +61,11 @@ function App() {
 
       <TodoList>
         {loading ? (
-          <p>Loading page...</p>
+          <TodosLoading />
         ) : error ? (
-          <p>Error page :(</p>
-        ) : filterTodosList.length === 0 ? (
-          <p>You can create your first TODO</p>
+          <TodosError />
+        ) : filterTodosList.length === 0 && loading ? (
+          <EmptyTodos />
         ) : (
           filterTodosList.map((todo) => (
             <TodoItem
