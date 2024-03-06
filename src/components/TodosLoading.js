@@ -1,5 +1,5 @@
-import { defaultTodos } from "../App";
 import "../styles/TodosLoading.css";
+import { defaultTodos } from "../utils/data";
 
 const TodosLoading = () => {
   return (
